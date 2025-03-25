@@ -5,22 +5,24 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
-    public int round;
+    public int Round;
 
+    public Player Player1, Player2;
+    public NumberPool NumberPool;
 
-    public Player player1, player2;
-    public NumberPool numberPool;
-
-    void initializeGame()
+    void InitializeGame()
     {
-        numberPool.InitializePool();
-        round = 1;
+        Debug.Log("Game running.");
+        Round = 1;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        InitializeGame();
+        NumberPool.InitializePool();
+        Player1.InitializePlayer();
+        Player2.InitializePlayer();
     }
 
     // Update is called once per frame
