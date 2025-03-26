@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 31126311857775240}
   - component: {fileID: 6731472116818395737}
   m_Layer: 5
-  m_Name: Number
+  m_Name: Player 2 Result Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 7669952465418354557}
   - component: {fileID: 8050292854495611887}
   m_Layer: 5
-  m_Name: text
+  m_Name: Round Title Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -585,7 +585,7 @@ GameObject:
   - component: {fileID: 4314214178539862488}
   - component: {fileID: 1388582806696943611}
   m_Layer: 5
-  m_Name: Number
+  m_Name: Player 1 Result Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -928,6 +928,7 @@ GameObject:
   - component: {fileID: 6774234358341152472}
   - component: {fileID: 3645577964892354021}
   - component: {fileID: 5188083593642372547}
+  - component: {fileID: 4010062165877096698}
   m_Layer: 5
   m_Name: Round Panel
   m_TagString: Untagged
@@ -995,3 +996,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4010062165877096698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8328701777041297248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79546066ca373494dbcc6e71653cf7d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RoundNumber: 0
+  P1Card: {fileID: 7328431301192974846, guid: fb506f639b9c9914a9660969d9ec310d, type: 3}
+  P2Card: {fileID: 7328431301192974846, guid: fb506f639b9c9914a9660969d9ec310d, type: 3}
+  P1Result: 0
+  P2Result: 0
+  roundNumberText: {fileID: 8050292854495611887}
+  p1ResultText: {fileID: 1388582806696943611}
+  p2ResultText: {fileID: 6731472116818395737}

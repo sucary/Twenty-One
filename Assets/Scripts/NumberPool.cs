@@ -44,9 +44,13 @@ public class NumberPool : MonoBehaviour
         return newCard;
     }
 
-    public void SelectCard(NumberCard card)
+    public void MarkSelected(NumberCard card)
     {
-        card.OnCardDrawn();
+        if (!card.IsDrawn)
+        {
+            card.button.interactable = false;
+            card.IsDrawn = true;
+        }
         DrawnNumbers.Add(card);
         NumberArray.Remove(card);
     }

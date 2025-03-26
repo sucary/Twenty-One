@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Round : MonoBehaviour
@@ -14,6 +15,12 @@ public class Round : MonoBehaviour
     private NumberPool _numberPool;
     private Player _player1, _player2;
 
+    private bool _isPlayer1Turn;
+
+    [SerializeField] private TMP_Text roundNumberText;
+    [SerializeField] private TMP_Text p1ResultText;
+    [SerializeField] private TMP_Text p2ResultText;
+
     public void InitializeRound(NumberPool pool, Player p1, Player p2)
     {
         RoundNumber = 1;
@@ -21,35 +28,75 @@ public class Round : MonoBehaviour
         _numberPool = pool;
         _player1 = p1;
         _player2 = p2;
+        _isPlayer1Turn = true;
     }
 
 
-    public void RunRound()
+    public IEnumerator RunRound()
     {
-        // Players take turn drawing cards
-        P1Card = DrawCard();
-        P2Card = DrawCard();
+        UpdateRoundUI();
 
-        // Calculate result for each player
-        int result = P1Card.CardValue - P2Card.CardValue;
-        P1Result = result;
-        P2Result = -result;
+        // Wait for Player 1 to select a card
+        yield return SelectCard(true);
+        // Wait for Player 2 to select a card
+        yield return SelectCard(false);
 
-        // Add result to each player's total points
-        _player1.AddToPoints(P1Result);
-        _player2.AddToPoints(P2Result);
+        // Calculate and allocate result for each player
+        HandleResult(P1Card.CardValue, P2Card.CardValue);
 
         _isRoundFinished = true;
     }
 
-    /*
-     * Now it assumes drawing the first card from the number pool.
-     * TODO: add card selection
-     */
-    private NumberCard DrawCard()
+    private IEnumerator SelectCard(bool isPlayer1)
     {
-        NumberCard card = _numberPool.NumberArray[0];
-        _numberPool.SelectCard(card);
-        return card;
+        NumberCard selectedCard = null;
+
+        // Attach OnCardSelected listener to each card
+        foreach (var card in _numberPool.NumberArray)
+        {
+            card.OnCardSelected += (card) =>
+            {
+                if ((isPlayer1 && _isPlayer1Turn) || (!isPlayer1 && !_isPlayer1Turn))
+                {
+                    selectedCard = card;
+                }
+            };
+        }
+
+        // Wait until a card is selected
+        yield return new WaitUntil(() => selectedCard != null);
+
+        if (isPlayer1)
+        {
+            P1Card = selectedCard;
+            _isPlayer1Turn = false;
+        }
+        else
+        {
+            P2Card = selectedCard;
+            _isPlayer1Turn = true;
+        }
+
+        // Remove the selected card from the pool
+        _numberPool.MarkSelected(selectedCard);
     }
+
+    private void HandleResult(int cardValue1, int cardValue2)
+    {
+        int result = cardValue1 - cardValue2;
+        P1Result = result;
+        P2Result = -result;
+
+        p1ResultText.text = P1Result.ToString();
+        p2ResultText.text = P2Result.ToString();
+
+        _player1.AddToPoints(P1Result);
+        _player2.AddToPoints(P2Result);
+    }
+
+    private void UpdateRoundUI()
+    {
+        roundNumberText.text = $"Round {RoundNumber}";
+    }
+
 }

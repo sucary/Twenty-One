@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7214490635528125149}
   - component: {fileID: 3082275726603928112}
   m_Layer: 5
-  m_Name: Player 1 Points
+  m_Name: Points Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 4632204981133603534}
   - component: {fileID: 3008570132572230133}
   m_Layer: 5
-  m_Name: Player 1 Name
+  m_Name: Name Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -279,8 +279,9 @@ GameObject:
   - component: {fileID: 2980989367275591045}
   - component: {fileID: 6557042120218915044}
   - component: {fileID: 8751324433959016213}
+  - component: {fileID: 6440062727238872744}
   m_Layer: 5
-  m_Name: Player 2 Panel
+  m_Name: Player Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -345,3 +346,17 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6440062727238872744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7492382386743338595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b644ad147497980419e577f9e4f4e38e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameText: {fileID: 3008570132572230133}
+  pointsText: {fileID: 3082275726603928112}

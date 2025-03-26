@@ -6,7 +6,6 @@ public class GameManager : MonoBehaviour
 {
 
     public Round Round;
-
     public Player Player1, Player2;
     public NumberPool NumberPool;
 
@@ -23,10 +22,19 @@ public class GameManager : MonoBehaviour
         InitializeGame();
         Round.InitializeRound(NumberPool, Player1, Player2);
         NumberPool.InitializePool();
-        Player1.InitializePlayer(10);
-        Player2.InitializePlayer(10);
+        Player1.InitializePlayer(10, "player1");
+        Player2.InitializePlayer(10, "player2");
 
-        Round.RunRound();
+        StartCoroutine(PlayRounds());
+    }
+
+    private IEnumerator PlayRounds()
+    {
+        while (Round.RoundNumber <= 5 && !PlayersBusted())
+        {
+            yield return Round.RunRound();
+            Round.RoundNumber++;
+        }
     }
 
     private bool PlayersBusted()
@@ -37,6 +45,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
