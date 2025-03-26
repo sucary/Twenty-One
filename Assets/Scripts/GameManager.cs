@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
-    public int Round;
+    public Round Round;
 
     public Player Player1, Player2;
     public NumberPool NumberPool;
@@ -13,16 +13,25 @@ public class GameManager : MonoBehaviour
     void InitializeGame()
     {
         Debug.Log("Game running.");
-        Round = 1;
     }
 
     // Start is called before the first frame update
+
+    // TODO: Adjust starting points
     void Start()
     {
         InitializeGame();
+        Round.InitializeRound(NumberPool, Player1, Player2);
         NumberPool.InitializePool();
-        Player1.InitializePlayer();
-        Player2.InitializePlayer();
+        Player1.InitializePlayer(10);
+        Player2.InitializePlayer(10);
+
+        Round.RunRound();
+    }
+
+    private bool PlayersBusted()
+    {
+        return Player1.IsBusted() || Player2.IsBusted();
     }
 
     // Update is called once per frame
