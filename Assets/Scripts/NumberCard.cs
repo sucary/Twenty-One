@@ -6,6 +6,7 @@ public class NumberCard : MonoBehaviour
 {
     public int CardValue { get; private set; }
     public bool IsDrawn { get; private set; }
+
     [SerializeField] private Button button;
     [SerializeField] private TextMeshProUGUI valueText;
 

@@ -14,7 +14,7 @@ public class NumberPool : MonoBehaviour
     {
         /*
          * Create the number cards (1-9)
-         * TODO: add more numbers (or the option to add more numbers in the main menu)
+         * TODO: add more numbers (or option to adjust numbers in the main menu)
          */
         for (int i = 1; i <= 9; i++)
         {
@@ -44,7 +44,7 @@ public class NumberPool : MonoBehaviour
         return newCard;
     }
 
-    public void MarkCardAsDrawn(NumberCard card)
+    public void SelectCard(NumberCard card)
     {
         card.OnCardDrawn();
         DrawnNumbers.Add(card);
