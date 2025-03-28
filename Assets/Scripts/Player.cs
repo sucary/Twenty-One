@@ -24,7 +24,9 @@ public class Player : MonoBehaviour
 
     public void AddToPoints(int value)
     {
-        Points += value;
+        int previousPoints = Points;
+        Points = previousPoints + value;
+        Debug.Log($"{nameText.text}: {previousPoints} + {value} = {Points}");
         UpdatePointsUI();
     }
 

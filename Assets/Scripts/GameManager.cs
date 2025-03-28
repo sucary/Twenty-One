@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     {
         while (Round.RoundNumber <= 5 && !PlayersBusted())
         {
+            Debug.Log($"Round {Round.RoundNumber}");
             yield return Round.RunRound();
             Round.RoundNumber++;
         }
