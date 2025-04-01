@@ -10,16 +10,23 @@ public class NumberPool : MonoBehaviour
 
     [SerializeField] private NumberCard numberCardPrefab;
 
+
     public void InitializePool()
     {
         /*
-         * Create the number cards (1-9)
+         * Create the number cards (1-9) + three random cards
          * TODO: add more numbers (or option to adjust numbers in the main menu)
          */
         for (int i = 1; i <= 9; i++)
         {
             NumberArray.Add(CreateNumberCard(i, NumberArray.Count));
             
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            int randomValue = Random.Range(1,9);
+            NumberArray.Add(CreateNumberCard(randomValue, NumberArray.Count));
         }
     }
 
@@ -53,5 +60,17 @@ public class NumberPool : MonoBehaviour
         }
         DrawnNumbers.Add(card);
         NumberArray.Remove(card);
+    }
+
+    // Disable all remaining cards when finishing the game
+    public void DisableAllCards()
+    {
+        foreach (var card in NumberArray)
+        {
+            if (card != null && card.button != null)
+            {
+                card.button.interactable = false;
+            }
+        }
     }
 }

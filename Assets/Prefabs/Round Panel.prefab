@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 8035923426449769555}
   - component: {fileID: 5306312896390712046}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: Turn Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1063,7 +1063,7 @@ GameObject:
   - component: {fileID: 4323523254608537365}
   - component: {fileID: 1621817167701780112}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Turn Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1278,7 +1278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79546066ca373494dbcc6e71653cf7d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _roundNumber: 0
+  RoundNumber: 0
   P1Card: {fileID: 0}
   P2Card: {fileID: 0}
   P1Result: 0
@@ -1288,3 +1288,4 @@ MonoBehaviour:
   p2ResultText: {fileID: 6731472116818395737}
   p1ValueText: {fileID: 5922211888922373207}
   p2ValueText: {fileID: 2860031769261260351}
+  turnText: {fileID: 1621817167701780112}

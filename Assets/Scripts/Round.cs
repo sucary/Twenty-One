@@ -11,7 +11,6 @@ public class Round : MonoBehaviour
     public int P1Result;
     public int P2Result;
 
-    private bool _isRoundFinished;
     private NumberPool _numberPool;
     private Player _player1, _player2;
 
@@ -22,17 +21,18 @@ public class Round : MonoBehaviour
     [SerializeField] private TMP_Text p2ResultText;
     [SerializeField] private TMP_Text p1ValueText;
     [SerializeField] private TMP_Text p2ValueText;
+    [SerializeField] private TMP_Text turnText;
 
     public void InitializeRound(NumberPool pool, Player p1, Player p2)
     {
         RoundNumber = 1;
-        _isRoundFinished = false;
         _numberPool = pool;
         _player1 = p1;
         _player2 = p2;
         _isPlayer1Turn = true;
-    }
 
+        UpdateTurnText();
+    }
 
     public IEnumerator RunRound()
     {
@@ -47,13 +47,13 @@ public class Round : MonoBehaviour
         HandleResult(P1Card.CardValue, P2Card.CardValue);
         Debug.Log($"Round number: {RoundNumber}");
         Debug.Log($"Round number text: {roundNumberText.text}");
-
-        _isRoundFinished = true;
     }
 
     private IEnumerator SelectCard(bool isPlayer1)
     {
         NumberCard selectedCard = null;
+
+        UpdateTurnText();
 
         // Attach OnCardSelected listener to each card
         foreach (var card in _numberPool.NumberArray)
@@ -76,7 +76,6 @@ public class Round : MonoBehaviour
             Debug.Log($"Player 1 draw {P1Card.CardValue}");
             p1ValueText.text = P1Card.CardValue.ToString();
             _isPlayer1Turn = false;
-            
         }
         else
         {
@@ -85,6 +84,8 @@ public class Round : MonoBehaviour
             p2ValueText.text = P2Card.CardValue.ToString();
             _isPlayer1Turn = true;
         }
+
+        UpdateTurnText();
 
         // Remove the selected card from the pool
         _numberPool.MarkSelected(selectedCard);
@@ -114,4 +115,13 @@ public class Round : MonoBehaviour
         Debug.Log($"UI Updated: Round {RoundNumber}");
     }
 
+    private void UpdateTurnText()
+    {
+        turnText.text = _isPlayer1Turn ? $"{_player1.name}'s turn" : $"{_player2.name}'s turn";
+    }
+
+    public void SetGameResultText(string resultText)
+    {
+        turnText.text = resultText;
+    }
 }
