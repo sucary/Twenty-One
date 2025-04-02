@@ -117,7 +117,7 @@ public class Round : MonoBehaviour
 
     private void UpdateTurnText()
     {
-        turnText.text = _isPlayer1Turn ? $"{_player1.name}'s turn" : $"{_player2.name}'s turn";
+        turnText.text = _isPlayer1Turn ? $"{_player1.Name}'s turn" : $"{_player2.Name}'s turn";
     }
 
     public void SetGameResultText(string resultText)

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -27,14 +28,25 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         InitializeGame();
+
+        menuButton.onClick.AddListener(BackToMenu);
+
+        // Get saved player names and card number
+        string player1Name = PlayerPrefs.GetString("Player1Name", "Player 1");
+        string player2Name = PlayerPrefs.GetString("Player2Name", "Player 2");
+        int cardNumber = PlayerPrefs.GetInt("CardNumber", 12);
+
+        Player1.InitializePlayer(10, player1Name);
+        Player2.InitializePlayer(10, player2Name);
+
+        NumberPool.InitializePool(cardNumber);
+
         Round.InitializeRound(NumberPool, Player1, Player2);
-        NumberPool.InitializePool();
-        Player1.InitializePlayer(10, "player1");
-        Player2.InitializePlayer(10, "player2");
 
         StartCoroutine(PlayRounds());
     }
 
+    // Handles round iteration
     private IEnumerator PlayRounds()
     {
         while (Round.RoundNumber <= 5)
@@ -78,6 +90,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Determinate game winner based on final points
     private string JudgeGameResult()
     {
         string resultText;
@@ -90,8 +103,8 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                string winner = Player1.IsBusted() ? Player2.name : Player1.name;
-                string loser = Player1.IsBusted() ? Player1.name : Player2.name;
+                string winner = Player1.IsBusted() ? Player2.Name : Player1.Name;
+                string loser = Player1.IsBusted() ? Player1.Name : Player2.Name;
                 resultText = $"{loser} busted! {winner} wins!";
             }
         }
@@ -103,11 +116,16 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                string winner = Player1.Points > Player2.Points ? Player1.name : Player2.name;
+                string winner = Player1.Points > Player2.Points ? Player1.Name : Player2.Name;
                 resultText = $"{winner} won!";
             }
         }
         Debug.Log(resultText);
         return resultText;
+    }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }

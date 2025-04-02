@@ -5,19 +5,18 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public string Name { get; private set; }
     public int Points   { get; private set; }
 
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private TMP_Text pointsText;
 
-
-    /*
-     * May adjust initial points for multi-difficulty, see GameManager
-     */
     public void InitializePlayer(int startingPoints, string playerName)
     {
         Points = startingPoints;
-        nameText.text = playerName; // Set player name in UI
+        Name = playerName;  // Name property
+        name = playerName;  // GameObject name
+        nameText.text = playerName;
         UpdatePointsUI();
     }
 
