@@ -99,6 +99,11 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogError("End Game Panel reference missing!");
         }
+
+
+        // Announce the winner
+        Debug.Log("Winner announcement text: " + Round.RoundNumber.ToString());
+        UAP_AccessibilityManager.Say(Round.turnText.text, true);
     }
 
     // Determinate game winner based on final points

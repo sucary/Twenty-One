@@ -54,12 +54,14 @@ public class EndGameMenu : MonoBehaviour
     public void RestartGame()
     {
         Debug.Log("Restarting game...");
+        Destroy(gameObject);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void GoToMainMenu()
     {
         Debug.Log("Going to main menu...");
+        Destroy(gameObject);
         SceneManager.LoadScene("MainMenu");
     }
 }

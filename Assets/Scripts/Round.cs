@@ -21,7 +21,7 @@ public class Round : MonoBehaviour
     [SerializeField] private TMP_Text p2ResultText;
     [SerializeField] private TMP_Text p1ValueText;
     [SerializeField] private TMP_Text p2ValueText;
-    [SerializeField] private TMP_Text turnText;
+    [SerializeField] public TMP_Text turnText;
 
     public void InitializeRound(NumberPool pool, Player p1, Player p2)
     {
@@ -36,15 +36,23 @@ public class Round : MonoBehaviour
 
     public IEnumerator RunRound()
     {
+        UAP_AccessibilityManager.Say("Round" +  RoundNumber + "Starts", true );
         UpdateRoundUI();
 
+
         // Wait for Player 1 to select a card
+        UAP_AccessibilityManager.Say(turnText.text);
         yield return SelectCard(true);
         // Wait for Player 2 to select a card
+        UAP_AccessibilityManager.Say(turnText.text);
         yield return SelectCard(false);
 
         // Calculate and allocate result for each player
         HandleResult(P1Card.CardValue, P2Card.CardValue);
+
+        UAP_AccessibilityManager.Say("Points of " + _player1.name + _player1.Points);
+        UAP_AccessibilityManager.Say("Points of " + _player2.name + _player2.Points);
+
         Debug.Log($"Round number: {RoundNumber}");
         Debug.Log($"Round number text: {roundNumberText.text}");
     }
