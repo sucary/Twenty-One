@@ -31,7 +31,7 @@ public class NumberPool : MonoBehaviour
         NumberCard newCard = Instantiate(numberCardPrefab, transform);
         newCard.Initialize(value);
 
-        // Calculate row
+        // Calculate row and column
         int row = cardIndex / 6;
         int column = cardIndex % 6;
 

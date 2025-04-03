@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -20,6 +22,8 @@ public class SettingMenu : MonoBehaviour
     private void Start()
     {
         UpdateCardNumberDisplay();
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(startButton.gameObject);
 
         plusButton.onClick.AddListener(IncreaseCardNumber);
         minusButton.onClick.AddListener(DecreaseCardNumber);

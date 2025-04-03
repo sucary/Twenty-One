@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+using UnityEngine.EventSystems;
 
 
 public class MainMenu : MonoBehaviour
@@ -14,6 +14,8 @@ public class MainMenu : MonoBehaviour
 
     public void Start()
     {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(playButton.gameObject);
         playButton.onClick.AddListener(PlayGame);
         exitButton.onClick.AddListener(ExitGame);
     }

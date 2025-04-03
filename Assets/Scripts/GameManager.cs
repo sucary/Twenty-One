@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
 
 public class GameManager : MonoBehaviour
 {
@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     private EndGameMenu endGamePanel;
     [SerializeField] private Button menuButton;
 
+    private KeyboardController keyboardController;
+
     void InitializeGame()
     {
         Debug.Log("Game running.");
@@ -23,6 +25,8 @@ public class GameManager : MonoBehaviour
         Canvas mainCanvas = FindObjectOfType<Canvas>();
         endGamePanel = Instantiate(endGamePanelPrefab, mainCanvas.transform);
         endGamePanel.Initialize();
+
+        EventSystem.current.SetSelectedGameObject(menuButton.gameObject);
     }
 
     void Start()
@@ -40,6 +44,8 @@ public class GameManager : MonoBehaviour
         Player2.InitializePlayer(10, player2Name);
 
         NumberPool.InitializePool(cardNumber);
+
+        keyboardController = NumberPool.gameObject.AddComponent<KeyboardController>();
 
         Round.InitializeRound(NumberPool, Player1, Player2);
 
@@ -83,6 +89,11 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Showing end game panel");
             endGamePanel.ShowPanel(resultText);
+
+            if (keyboardController != null)
+            {
+                keyboardController.SetActive(false);
+            }
         }
         else
         {

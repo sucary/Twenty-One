@@ -92,6 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restartButton: {fileID: 2988590129021872622}
   menuButton: {fileID: 1435274937685205999}
+  resultText: {fileID: 0}
 --- !u!1 &2005576716593567527
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,10 +183,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 2988590129021872622}
+    m_SelectOnDown: {fileID: 1435274937685205999}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -571,10 +572,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 1435274937685205999}
+    m_SelectOnDown: {fileID: 1435274937685205999}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1

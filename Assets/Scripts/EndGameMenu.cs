@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class EndGameMenu : MonoBehaviour
 {
@@ -46,6 +47,8 @@ public class EndGameMenu : MonoBehaviour
         }
 
         gameObject.SetActive(true);
+
+        EventSystem.current.SetSelectedGameObject(restartButton.gameObject);
     }
 
     public void RestartGame()
